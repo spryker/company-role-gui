@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 /**
  * @method \Spryker\Zed\CompanyRoleGui\Communication\CompanyRoleGuiCommunicationFactory getFactory()
  */
-class CompanyRoleFieldPlugin extends AbstractPlugin implements CompanyUserFormExpanderPluginInterface
+class CompanyUserRoleFieldPlugin extends AbstractPlugin implements CompanyUserFormExpanderPluginInterface
 {
     /**
      * {@inheritdoc}
@@ -28,10 +28,10 @@ class CompanyRoleFieldPlugin extends AbstractPlugin implements CompanyUserFormEx
     public function buildForm(FormBuilderInterface $builder): void
     {
         $formType = $this->getFactory()
-            ->createCompanyRoleChoiceFormType();
+            ->createCompanyUserRoleChoiceFormType();
 
         $dataProvider = $this->getFactory()
-            ->createCompanyRoleChoiceFormDataProvider();
+            ->createCompanyUserRoleChoiceFormDataProvider();
 
         $companyUserTransfer = $builder->getData();
         $dataProvider->getData($companyUserTransfer);
