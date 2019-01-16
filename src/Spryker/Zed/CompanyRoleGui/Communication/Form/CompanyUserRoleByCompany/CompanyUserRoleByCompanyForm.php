@@ -5,7 +5,7 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace Spryker\Zed\CompanyRoleGui\Communication\Form;
+namespace Spryker\Zed\CompanyRoleGui\Communication\Form\CompanyUserRoleByCompany;
 
 use Closure;
 use Generated\Shared\Transfer\CompanyRoleCollectionTransfer;
@@ -22,14 +22,13 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  * @method \Spryker\Zed\CompanyRoleGui\CompanyRoleGuiConfig getConfig()
  * @method \Spryker\Zed\CompanyRoleGui\Communication\CompanyRoleGuiCommunicationFactory getFactory()
  */
-class CompanyUserRoleForm extends AbstractType
+class CompanyUserRoleByCompanyForm extends AbstractType
 {
-    public const OPTION_VALUES_ROLES_CHOICES = 'company_role_choices';
-    public const OPTION_ATTRIBUTES_ROLES_CHOICES = 'company_role_attributes';
+    public const OPTION_COMPANY_ROLE_CHOICES = 'company_role_choices';
 
     protected const FIELD_COMPANY_ROLE_COLLECTION = 'company_role_collection';
 
-    protected const TEMPLATE_PATH = '@CompanyRoleGui/CompanyUser/company_role.twig';
+    protected const TEMPLATE_PATH = '@CompanyRoleGui/BusinessOnBehalfGui/company_role.twig';
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
@@ -51,8 +50,7 @@ class CompanyUserRoleForm extends AbstractType
     {
         parent::configureOptions($resolver);
 
-        $resolver->setRequired(static::OPTION_VALUES_ROLES_CHOICES);
-        $resolver->setRequired(static::OPTION_ATTRIBUTES_ROLES_CHOICES);
+        $resolver->setRequired(static::OPTION_COMPANY_ROLE_CHOICES);
     }
 
     /**
@@ -72,8 +70,7 @@ class CompanyUserRoleForm extends AbstractType
     protected function addCompanyRoleCollectionField(FormBuilderInterface $builder, array $options)
     {
         $builder->add(static::FIELD_COMPANY_ROLE_COLLECTION, ChoiceType::class, [
-            'choices' => $options[static::OPTION_VALUES_ROLES_CHOICES],
-            'choice_attr' => $options[static::OPTION_ATTRIBUTES_ROLES_CHOICES],
+            'choices' => $options[static::OPTION_COMPANY_ROLE_CHOICES],
             'constraints' => $this->createCompanyRoleCollectionConstraints(),
             'choices_as_values' => true,
             'label' => false,
@@ -122,10 +119,12 @@ class CompanyUserRoleForm extends AbstractType
         return function ($roleCollection = []): array {
             $roles = [];
 
-            if (!empty($roleCollection[CompanyRoleCollectionTransfer::ROLES])) {
-                foreach ($roleCollection[CompanyRoleCollectionTransfer::ROLES] as $role) {
-                    $roles[] = $role[CompanyRoleTransfer::ID_COMPANY_ROLE];
-                }
+            if (empty($roleCollection[CompanyRoleCollectionTransfer::ROLES])) {
+                return $roles;
+            }
+
+            foreach ($roleCollection[CompanyRoleCollectionTransfer::ROLES] as $role) {
+                $roles[] = $role[CompanyRoleTransfer::ID_COMPANY_ROLE];
             }
 
             return $roles;
@@ -137,10 +136,10 @@ class CompanyUserRoleForm extends AbstractType
      */
     protected function getOutputDataCallbackRoleCollectionTransformer(): Closure
     {
-        return function ($roleCollectionSubmitted = []): CompanyRoleCollectionTransfer {
+        return function ($submittedRoleCollection = []): CompanyRoleCollectionTransfer {
             $companyRoleCollectionTransfer = new CompanyRoleCollectionTransfer();
 
-            foreach ($roleCollectionSubmitted as $role) {
+            foreach ($submittedRoleCollection as $role) {
                 $companyRoleTransfer = (new CompanyRoleTransfer())
                     ->setIdCompanyRole($role);
 
