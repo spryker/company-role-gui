@@ -30,7 +30,6 @@ class CompanyRoleCustomerBusinessUnitAttachFormExpanderPlugin extends AbstractPl
      */
     public function expand(FormBuilderInterface $builder): FormBuilderInterface
     {
-        /** @var \Generated\Shared\Transfer\CompanyUserTransfer $companyUserTransfer */
         $companyUserTransfer = $builder->getData();
 
         if (!$companyUserTransfer->getCompany()) {
