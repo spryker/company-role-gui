@@ -13,6 +13,8 @@ use Spryker\Zed\CompanyUserGuiExtension\Dependency\Plugin\CompanyUserTablePrepar
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
+ * @deprecated Use {@link \Spryker\Zed\CompanyRoleGui\Communication\Plugin\CompanyUserGui\CompanyRoleCompanyUserTableBulkDataExpanderPlugin} instead.
+ *
  * @method \Spryker\Zed\CompanyRoleGui\Communication\CompanyRoleGuiCommunicationFactory getFactory()
  * @method \Spryker\Zed\CompanyRoleGui\CompanyRoleGuiConfig getConfig()
  */

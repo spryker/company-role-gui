@@ -9,6 +9,9 @@ namespace Spryker\Zed\CompanyRoleGui\Communication\Formatter;
 
 use Generated\Shared\Transfer\CompanyRoleCollectionTransfer;
 
+/**
+ * @deprecated Covered in \Spryker\Zed\CompanyRoleGui\Communication\Expander\CompanyRoleCompanyUserTableDataExpanderInterface
+ */
 interface CompanyRoleGuiFormatterInterface
 {
     /**

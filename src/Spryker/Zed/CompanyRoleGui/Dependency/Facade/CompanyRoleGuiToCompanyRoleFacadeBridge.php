@@ -97,4 +97,14 @@ class CompanyRoleGuiToCompanyRoleFacadeBridge implements CompanyRoleGuiToCompany
     {
         return $this->companyRoleFacade->findCompanyRoleById($companyRoleTransfer);
     }
+
+    /**
+     * @param list<int> $companyUserIds
+     *
+     * @return array<int, list<string>>
+     */
+    public function getCompanyRoleNamesGroupedByCompanyUserIds(array $companyUserIds): array
+    {
+        return $this->companyRoleFacade->getCompanyRoleNamesGroupedByCompanyUserIds($companyUserIds);
+    }
 }

@@ -64,4 +64,11 @@ interface CompanyRoleGuiToCompanyRoleFacadeInterface
      * @return \Generated\Shared\Transfer\CompanyRoleTransfer|null
      */
     public function findCompanyRoleById(CompanyRoleTransfer $companyRoleTransfer): ?CompanyRoleTransfer;
+
+    /**
+     * @param list<int> $companyUserIds
+     *
+     * @return array<int, list<string>>
+     */
+    public function getCompanyRoleNamesGroupedByCompanyUserIds(array $companyUserIds): array;
 }

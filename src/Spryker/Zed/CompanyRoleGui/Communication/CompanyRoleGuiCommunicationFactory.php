@@ -10,6 +10,8 @@ namespace Spryker\Zed\CompanyRoleGui\Communication;
 use Generated\Shared\Transfer\CompanyRoleTransfer;
 use Generated\Shared\Transfer\CompanyUserTransfer;
 use Orm\Zed\CompanyRole\Persistence\SpyCompanyRoleQuery;
+use Spryker\Zed\CompanyRoleGui\Communication\Expander\CompanyRoleCompanyUserTableDataExpander;
+use Spryker\Zed\CompanyRoleGui\Communication\Expander\CompanyRoleCompanyUserTableDataExpanderInterface;
 use Spryker\Zed\CompanyRoleGui\Communication\Form\CompanyRoleCreateForm;
 use Spryker\Zed\CompanyRoleGui\Communication\Form\CompanyRoleDeleteForm;
 use Spryker\Zed\CompanyRoleGui\Communication\Form\CompanyRoleEditForm;
@@ -91,6 +93,11 @@ class CompanyRoleGuiCommunicationFactory extends AbstractCommunicationFactory
     public function createCompanyRoleGuiFormatter(): CompanyRoleGuiFormatterInterface
     {
         return new CompanyRoleGuiFormatter();
+    }
+
+    public function createCompanyRoleCompanyUserTableDataExpander(): CompanyRoleCompanyUserTableDataExpanderInterface
+    {
+        return new CompanyRoleCompanyUserTableDataExpander($this->getCompanyRoleFacade());
     }
 
     /**
