@@ -40,11 +40,6 @@ class SuggestController extends AbstractController
         return $this->viewResponse($response);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return array
-     */
     protected function executeIndexAction(Request $request): array
     {
         $companyUserTransfer = $this->createCompanyUserTransfer($request);
@@ -56,11 +51,6 @@ class SuggestController extends AbstractController
         ];
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Generated\Shared\Transfer\CompanyUserTransfer
-     */
     protected function createCompanyUserTransfer(Request $request): CompanyUserTransfer
     {
         $idCompany = $this->castId($request->query->get(static::PARAM_ID_COMPANY));
@@ -78,11 +68,6 @@ class SuggestController extends AbstractController
         return $companyUserTransfer;
     }
 
-    /**
-     * @param int $idCompanyUser
-     *
-     * @return \Generated\Shared\Transfer\CompanyRoleCollectionTransfer
-     */
     protected function getAssignedCompanyRoleCollection(int $idCompanyUser): CompanyRoleCollectionTransfer
     {
         $companyRoleCriteriaFilterTransfer = (new CompanyRoleCriteriaFilterTransfer())

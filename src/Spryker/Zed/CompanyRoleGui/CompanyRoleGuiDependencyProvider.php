@@ -50,11 +50,6 @@ class CompanyRoleGuiDependencyProvider extends AbstractBundleDependencyProvider
      */
     public const PLUGINS_COMPANY_ROLE_CREATE_FORM_EXPANDER = 'PLUGINS_COMPANY_ROLE_CREATE_FORM_EXPANDER';
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
         $container = parent::provideCommunicationLayerDependencies($container);
@@ -69,11 +64,6 @@ class CompanyRoleGuiDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addCompanyFacade(Container $container): Container
     {
         $container->set(static::FACADE_COMPANY, function (Container $container) {
@@ -85,11 +75,6 @@ class CompanyRoleGuiDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addCompanyRoleFacade(Container $container): Container
     {
         $container->set(static::FACADE_COMPANY_ROLE, function (Container $container) {
@@ -101,11 +86,6 @@ class CompanyRoleGuiDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addCompanyRolePropelQuery(Container $container): Container
     {
         $container->set(static::PROPEL_QUERY_COMPANY_ROLE, $container->factory(function () {
@@ -115,11 +95,6 @@ class CompanyRoleGuiDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addGlossaryFacade(Container $container): Container
     {
         $container->set(static::FACADE_GLOSSARY, function (Container $container) {
@@ -131,11 +106,6 @@ class CompanyRoleGuiDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPermissionFacade(Container $container): Container
     {
         $container->set(static::FACADE_PERMISSION, function (Container $container) {
@@ -147,11 +117,6 @@ class CompanyRoleGuiDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addCompanyRoleCreateFormExpanderPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_COMPANY_ROLE_CREATE_FORM_EXPANDER, function () {

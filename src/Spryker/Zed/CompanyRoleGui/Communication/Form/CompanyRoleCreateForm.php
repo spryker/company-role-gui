@@ -69,11 +69,6 @@ class CompanyRoleCreateForm extends AbstractType
      */
     protected const TEMPLATE_PATH = '@CompanyRoleGui/_partials/company_role_manage_permissions.twig';
 
-    /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
-     *
-     * @return void
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setRequired([
@@ -230,9 +225,6 @@ class CompanyRoleCreateForm extends AbstractType
         return $this;
     }
 
-    /**
-     * @return \Closure
-     */
     protected function getInputDataCallbackPermissionCollectionTransformer(): Closure
     {
         return function ($permissionCollection = []): array {
@@ -247,9 +239,6 @@ class CompanyRoleCreateForm extends AbstractType
         };
     }
 
-    /**
-     * @return \Closure
-     */
     protected function getOutputDataCallbackPermissionCollectionTransformer(): Closure
     {
         return function ($permissionCollectionSubmitted = []): PermissionCollectionTransfer {
@@ -264,9 +253,6 @@ class CompanyRoleCreateForm extends AbstractType
         };
     }
 
-    /**
-     * @return string
-     */
     protected function getTemplatePath(): string
     {
         return static::TEMPLATE_PATH;

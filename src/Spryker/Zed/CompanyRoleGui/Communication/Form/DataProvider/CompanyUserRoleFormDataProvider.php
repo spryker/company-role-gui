@@ -35,19 +35,11 @@ class CompanyUserRoleFormDataProvider
      */
     protected $companyRoleFacade;
 
-    /**
-     * @param \Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToCompanyRoleFacadeInterface $companyRoleFacade
-     */
     public function __construct(CompanyRoleGuiToCompanyRoleFacadeInterface $companyRoleFacade)
     {
         $this->companyRoleFacade = $companyRoleFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CompanyUserTransfer $companyUserTransfer
-     *
-     * @return \Generated\Shared\Transfer\CompanyUserTransfer
-     */
     public function getData(CompanyUserTransfer $companyUserTransfer): CompanyUserTransfer
     {
         return $companyUserTransfer;
@@ -110,11 +102,6 @@ class CompanyUserRoleFormDataProvider
         return [$values, $attributes];
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CompanyRoleTransfer $companyRoleTransfer
-     *
-     * @return string
-     */
     protected function generateCompanyRoleName(CompanyRoleTransfer $companyRoleTransfer): string
     {
         return sprintf(static::FORMAT_NAME, $companyRoleTransfer->getName(), $companyRoleTransfer->getIdCompanyRole());

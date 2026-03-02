@@ -50,11 +50,6 @@ class CompanyUserRoleByCompanyForm extends AbstractType
         $this->addCompanyRoleCollectionField($builder, $options);
     }
 
-    /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
-     *
-     * @return void
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
@@ -62,9 +57,6 @@ class CompanyUserRoleByCompanyForm extends AbstractType
         $resolver->setRequired(static::OPTION_COMPANY_ROLE_CHOICES);
     }
 
-    /**
-     * @return string
-     */
     public function getTemplatePath(): string
     {
         return static::TEMPLATE_PATH;
@@ -101,9 +93,6 @@ class CompanyUserRoleByCompanyForm extends AbstractType
         return $this;
     }
 
-    /**
-     * @return array
-     */
     protected function createCompanyRoleCollectionConstraints(): array
     {
         $companyRoleCollectionConstraints = [];
@@ -119,9 +108,6 @@ class CompanyUserRoleByCompanyForm extends AbstractType
         return $companyRoleCollectionConstraints;
     }
 
-    /**
-     * @return \Closure
-     */
     protected function getInputDataCallbackRoleCollectionTransformer(): Closure
     {
         return function ($roleCollection = []): array {
@@ -139,9 +125,6 @@ class CompanyUserRoleByCompanyForm extends AbstractType
         };
     }
 
-    /**
-     * @return \Closure
-     */
     protected function getOutputDataCallbackRoleCollectionTransformer(): Closure
     {
         return function ($submittedRoleCollection = []): CompanyRoleCollectionTransfer {

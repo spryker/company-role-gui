@@ -37,27 +37,16 @@ use Symfony\Component\Form\FormTypeInterface;
  */
 class CompanyRoleGuiCommunicationFactory extends AbstractCommunicationFactory
 {
-    /**
-     * @return \Symfony\Component\Form\FormTypeInterface
-     */
     public function createCompanyUserRoleForm(): FormTypeInterface
     {
         return new CompanyUserRoleForm();
     }
 
-    /**
-     * @return \Spryker\Zed\CompanyRoleGui\Communication\Form\DataProvider\CompanyUserRoleFormDataProvider
-     */
     public function createCompanyUserRoleFormDataProvider(): CompanyUserRoleFormDataProvider
     {
         return new CompanyUserRoleFormDataProvider($this->getCompanyRoleFacade());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CompanyUserTransfer $companyUserTransfer
-     *
-     * @return \Symfony\Component\Form\FormInterface
-     */
     public function createCompanyUserRoleAutoSuggestForm(CompanyUserTransfer $companyUserTransfer): FormInterface
     {
         $dataProvider = $this->createCompanyUserRoleFormDataProvider();
@@ -69,17 +58,11 @@ class CompanyRoleGuiCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToCompanyRoleFacadeInterface
-     */
     public function getCompanyRoleFacade(): CompanyRoleGuiToCompanyRoleFacadeInterface
     {
         return $this->getProvidedDependency(CompanyRoleGuiDependencyProvider::FACADE_COMPANY_ROLE);
     }
 
-    /**
-     * @return \Spryker\Zed\CompanyRoleGui\Communication\Table\CompanyRoleTable
-     */
     public function createCompanyRoleTable(): CompanyRoleTable
     {
         return new CompanyRoleTable(
@@ -87,9 +70,6 @@ class CompanyRoleGuiCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\CompanyRoleGui\Communication\Formatter\CompanyRoleGuiFormatterInterface
-     */
     public function createCompanyRoleGuiFormatter(): CompanyRoleGuiFormatterInterface
     {
         return new CompanyRoleGuiFormatter();
@@ -100,17 +80,11 @@ class CompanyRoleGuiCommunicationFactory extends AbstractCommunicationFactory
         return new CompanyRoleCompanyUserTableDataExpander($this->getCompanyRoleFacade());
     }
 
-    /**
-     * @return \Orm\Zed\CompanyRole\Persistence\SpyCompanyRoleQuery
-     */
     public function getCompanyRolePropelQuery(): SpyCompanyRoleQuery
     {
         return $this->getProvidedDependency(CompanyRoleGuiDependencyProvider::PROPEL_QUERY_COMPANY_ROLE);
     }
 
-    /**
-     * @return \Symfony\Component\Form\FormInterface
-     */
     public function createCompanyRoleCreateForm(): FormInterface
     {
         $dataProvider = $this->createCompanyRoleCreateFormDataProvider();
@@ -122,11 +96,6 @@ class CompanyRoleGuiCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CompanyRoleTransfer $companyRoleTransfer
-     *
-     * @return \Symfony\Component\Form\FormInterface
-     */
     public function createCompanyRoleEditForm(CompanyRoleTransfer $companyRoleTransfer): FormInterface
     {
         $dataProvider = $this->createCompanyRoleCreateFormDataProvider();
@@ -138,17 +107,11 @@ class CompanyRoleGuiCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Symfony\Component\Form\FormInterface
-     */
     public function createCompanyRoleDeleteForm(): FormInterface
     {
         return $this->getFormFactory()->create(CompanyRoleDeleteForm::class);
     }
 
-    /**
-     * @return \Spryker\Zed\CompanyRoleGui\Communication\Form\DataProvider\CompanyRoleCreateDataProvider
-     */
     public function createCompanyRoleCreateFormDataProvider(): CompanyRoleCreateDataProvider
     {
         return new CompanyRoleCreateDataProvider(
@@ -159,41 +122,26 @@ class CompanyRoleGuiCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToCompanyFacadeInterface
-     */
     public function getCompanyFacade(): CompanyRoleGuiToCompanyFacadeInterface
     {
         return $this->getProvidedDependency(CompanyRoleGuiDependencyProvider::FACADE_COMPANY);
     }
 
-    /**
-     * @return \Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToGlossaryFacadeInterface
-     */
     public function getGlossaryFacade(): CompanyRoleGuiToGlossaryFacadeInterface
     {
         return $this->getProvidedDependency(CompanyRoleGuiDependencyProvider::FACADE_GLOSSARY);
     }
 
-    /**
-     * @return \Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToPermissionFacadeInterface
-     */
     public function getPermissionFacade(): CompanyRoleGuiToPermissionFacadeInterface
     {
         return $this->getProvidedDependency(CompanyRoleGuiDependencyProvider::FACADE_PERMISSION);
     }
 
-    /**
-     * @return \Symfony\Component\Form\FormTypeInterface
-     */
     public function createCompanyUserRoleByCompanyForm(): FormTypeInterface
     {
         return new CompanyUserRoleByCompanyForm();
     }
 
-    /**
-     * @return \Spryker\Zed\CompanyRoleGui\Communication\Form\CompanyUserRoleByCompany\DataProvider\CompanyUserRoleByCompanyFormDataProvider
-     */
     public function createCompanyUserRoleFormDataProviderByCompany(): CompanyUserRoleByCompanyFormDataProvider
     {
         return new CompanyUserRoleByCompanyFormDataProvider($this->getCompanyRoleFacade());

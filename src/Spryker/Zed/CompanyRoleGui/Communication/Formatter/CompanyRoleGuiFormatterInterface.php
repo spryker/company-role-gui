@@ -14,10 +14,5 @@ use Generated\Shared\Transfer\CompanyRoleCollectionTransfer;
  */
 interface CompanyRoleGuiFormatterInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\CompanyRoleCollectionTransfer $companyRoleCollectionTransfer
-     *
-     * @return string
-     */
     public function formatCompanyRoleNames(CompanyRoleCollectionTransfer $companyRoleCollectionTransfer): string;
 }

@@ -27,72 +27,37 @@ class CompanyRoleGuiToCompanyRoleFacadeBridge implements CompanyRoleGuiToCompany
         $this->companyRoleFacade = $companyRoleFacade;
     }
 
-    /**
-     * @param int $idCompany
-     *
-     * @return \Generated\Shared\Transfer\CompanyRoleTransfer|null
-     */
     public function findDefaultCompanyRoleByIdCompany(int $idCompany): ?CompanyRoleTransfer
     {
         return $this->companyRoleFacade->findDefaultCompanyRoleByIdCompany($idCompany);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CompanyRoleTransfer $companyRoleTransfer
-     *
-     * @return \Generated\Shared\Transfer\CompanyRoleResponseTransfer
-     */
     public function delete(CompanyRoleTransfer $companyRoleTransfer): CompanyRoleResponseTransfer
     {
         return $this->companyRoleFacade->delete($companyRoleTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CompanyRoleTransfer $companyRoleTransfer
-     *
-     * @return \Generated\Shared\Transfer\CompanyRoleTransfer
-     */
     public function getCompanyRoleById(CompanyRoleTransfer $companyRoleTransfer): CompanyRoleTransfer
     {
         return $this->companyRoleFacade->getCompanyRoleById($companyRoleTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CompanyRoleTransfer $companyRoleTransfer
-     *
-     * @return \Generated\Shared\Transfer\CompanyRoleResponseTransfer
-     */
     public function create(CompanyRoleTransfer $companyRoleTransfer): CompanyRoleResponseTransfer
     {
         return $this->companyRoleFacade->create($companyRoleTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CompanyRoleTransfer $companyRoleTransfer
-     *
-     * @return void
-     */
     public function update(CompanyRoleTransfer $companyRoleTransfer): void
     {
         $this->companyRoleFacade->update($companyRoleTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CompanyRoleCriteriaFilterTransfer $criteriaFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\CompanyRoleCollectionTransfer
-     */
     public function getCompanyRoleCollection(
         CompanyRoleCriteriaFilterTransfer $criteriaFilterTransfer
     ): CompanyRoleCollectionTransfer {
         return $this->companyRoleFacade->getCompanyRoleCollection($criteriaFilterTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CompanyRoleTransfer $companyRoleTransfer
-     *
-     * @return \Generated\Shared\Transfer\CompanyRoleTransfer|null
-     */
     public function findCompanyRoleById(CompanyRoleTransfer $companyRoleTransfer): ?CompanyRoleTransfer
     {
         return $this->companyRoleFacade->findCompanyRoleById($companyRoleTransfer);

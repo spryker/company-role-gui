@@ -64,11 +64,6 @@ class CompanyUserRoleForm extends AbstractType
         $builder->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'companyRolesSearchPreSubmitHandler']);
     }
 
-    /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
-     *
-     * @return void
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
@@ -77,27 +72,16 @@ class CompanyUserRoleForm extends AbstractType
         $resolver->setRequired(static::OPTION_ATTRIBUTES_ROLES_CHOICES);
     }
 
-    /**
-     * @return string
-     */
     public function getTemplatePath(): string
     {
         return static::TEMPLATE_PATH;
     }
 
-    /**
-     * @return string
-     */
     public function getBlockPrefix(): string
     {
         return 'company-user';
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $formEvent
-     *
-     * @return void
-     */
     public function companyRolesSearchPreSubmitHandler(FormEvent $formEvent): void
     {
         $data = $formEvent->getData();
@@ -163,9 +147,6 @@ class CompanyUserRoleForm extends AbstractType
         ];
     }
 
-    /**
-     * @return array
-     */
     protected function createCompanyRoleCollectionConstraints(): array
     {
         $companyRoleCollectionConstraints = [];

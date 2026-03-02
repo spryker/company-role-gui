@@ -43,12 +43,6 @@ class CompanyRoleCreateDataProvider
      */
     protected $permissionFacade;
 
-    /**
-     * @param \Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToCompanyFacadeInterface $companyFacade
-     * @param \Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToCompanyRoleFacadeInterface $companyRoleFacade
-     * @param \Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToGlossaryFacadeInterface $glossaryFacade
-     * @param \Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToPermissionFacadeInterface $permissionFacade
-     */
     public function __construct(
         CompanyRoleGuiToCompanyFacadeInterface $companyFacade,
         CompanyRoleGuiToCompanyRoleFacadeInterface $companyRoleFacade,
@@ -61,11 +55,6 @@ class CompanyRoleCreateDataProvider
         $this->permissionFacade = $permissionFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CompanyRoleTransfer|null $companyRoleTransfer
-     *
-     * @return \Generated\Shared\Transfer\CompanyRoleTransfer
-     */
     public function getData(?CompanyRoleTransfer $companyRoleTransfer = null): CompanyRoleTransfer
     {
         if ($companyRoleTransfer !== null) {
@@ -132,11 +121,6 @@ class CompanyRoleCreateDataProvider
         return $preparedPermissions;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PermissionTransfer $permissionTransfer
-     *
-     * @return string
-     */
     protected function getPermissionVerboseName(PermissionTransfer $permissionTransfer): string
     {
         $permissionTransfer->requireKey();

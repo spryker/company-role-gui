@@ -122,11 +122,6 @@ class DeleteCompanyRoleController extends AbstractController
         ]);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     protected function redirectToReferer(Request $request): RedirectResponse
     {
         return $this->redirectResponse(
