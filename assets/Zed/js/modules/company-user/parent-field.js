@@ -5,6 +5,8 @@
 
 'use strict';
 
+var DOMPurify = require('dompurify');
+
 /**
  * @see \Spryker\Zed\CompanyRoleGui\Communication\Form\CompanyRoleChoiceFormType
  * @type {string}
@@ -75,7 +77,7 @@ function CompanyRoleFieldHandler() {
             roleSuggestUrl,
             { idCompany: getCompanyId(), idCompanyUser: getCompanyUserId() },
             function (companyRolesView) {
-                $roleField.html(companyRolesView);
+                $roleField.html(DOMPurify.sanitize(companyRolesView));
                 setRoleNames();
             },
         );
