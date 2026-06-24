@@ -12,6 +12,8 @@ use Spryker\Zed\Kernel\AbstractBundleConfig;
 class CompanyRoleGuiConfig extends AbstractBundleConfig
 {
     /**
+     * @api
+     *
      * @see \Spryker\Zed\CompanyUserGui\CompanyUserGuiConfig
      *
      * @var string
@@ -19,6 +21,8 @@ class CompanyRoleGuiConfig extends AbstractBundleConfig
     public const COL_ID_COMPANY_USER = 'id_company_user';
 
     /**
+     * @api
+     *
      * @var string
      */
     public const COL_COMPANY_ROLE_NAMES = 'company_role_names';
