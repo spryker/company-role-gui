@@ -29,6 +29,7 @@ use Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToCompanyRoleFaca
 use Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToGlossaryFacadeInterface;
 use Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToPermissionFacadeInterface;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
+use Spryker\Zed\Locale\Business\LocaleFacadeInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeInterface;
 
@@ -119,6 +120,7 @@ class CompanyRoleGuiCommunicationFactory extends AbstractCommunicationFactory
             $this->getCompanyRoleFacade(),
             $this->getGlossaryFacade(),
             $this->getPermissionFacade(),
+            $this->getLocaleFacade(),
         );
     }
 
@@ -135,6 +137,11 @@ class CompanyRoleGuiCommunicationFactory extends AbstractCommunicationFactory
     public function getPermissionFacade(): CompanyRoleGuiToPermissionFacadeInterface
     {
         return $this->getProvidedDependency(CompanyRoleGuiDependencyProvider::FACADE_PERMISSION);
+    }
+
+    public function getLocaleFacade(): LocaleFacadeInterface
+    {
+        return $this->getProvidedDependency(CompanyRoleGuiDependencyProvider::FACADE_LOCALE);
     }
 
     public function createCompanyUserRoleByCompanyForm(): FormTypeInterface

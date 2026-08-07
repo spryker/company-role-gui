@@ -13,8 +13,10 @@
         "spryker/glossary": "^3.0.0",
         "spryker/gui": "^3.45.0 || ^4.0.0 || ^5.0.0",
         "spryker/kernel": "^3.30.0",
+        "spryker/locale": "^3.8.0 || ^4.0.0",
         "spryker/permission": "^1.2.0",
         "spryker/symfony": "^3.1.5",
+        "spryker/transfer": "^3.25.0",
         "spryker/util-text": "^1.2.0"
     },
     "require-dev": {

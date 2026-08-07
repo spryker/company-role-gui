@@ -12,11 +12,15 @@ use Generated\Shared\Transfer\LocaleTransfer;
 interface CompanyRoleGuiToGlossaryFacadeInterface
 {
     /**
-     * @param string $keyName
      * @param array<string, mixed> $data
-     * @param \Generated\Shared\Transfer\LocaleTransfer|null $localeTransfer
-     *
-     * @return string
      */
-    public function translate($keyName, array $data = [], ?LocaleTransfer $localeTransfer = null): string;
+    public function translate(string $keyName, array $data = [], ?LocaleTransfer $localeTransfer = null): string;
+
+    /**
+     * @param array<string> $glossaryKeys
+     * @param array<\Generated\Shared\Transfer\LocaleTransfer> $localeTransfers
+     *
+     * @return array<\Generated\Shared\Transfer\TranslationTransfer>
+     */
+    public function getTranslationsByGlossaryKeysAndLocaleTransfers(array $glossaryKeys, array $localeTransfers): array;
 }

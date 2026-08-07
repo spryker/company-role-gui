@@ -15,6 +15,7 @@ use Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToCompanyFacadeIn
 use Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToCompanyRoleFacadeInterface;
 use Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToGlossaryFacadeInterface;
 use Spryker\Zed\CompanyRoleGui\Dependency\Facade\CompanyRoleGuiToPermissionFacadeInterface;
+use Spryker\Zed\Locale\Business\LocaleFacadeInterface;
 
 class CompanyRoleCreateDataProvider
 {
@@ -43,16 +44,23 @@ class CompanyRoleCreateDataProvider
      */
     protected $permissionFacade;
 
+    /**
+     * @var \Spryker\Zed\Locale\Business\LocaleFacadeInterface
+     */
+    protected $localeFacade;
+
     public function __construct(
         CompanyRoleGuiToCompanyFacadeInterface $companyFacade,
         CompanyRoleGuiToCompanyRoleFacadeInterface $companyRoleFacade,
         CompanyRoleGuiToGlossaryFacadeInterface $glossaryFacade,
-        CompanyRoleGuiToPermissionFacadeInterface $permissionFacade
+        CompanyRoleGuiToPermissionFacadeInterface $permissionFacade,
+        LocaleFacadeInterface $localeFacade
     ) {
         $this->companyFacade = $companyFacade;
         $this->companyRoleFacade = $companyRoleFacade;
         $this->glossaryFacade = $glossaryFacade;
         $this->permissionFacade = $permissionFacade;
+        $this->localeFacade = $localeFacade;
     }
 
     public function getData(?CompanyRoleTransfer $companyRoleTransfer = null): CompanyRoleTransfer
@@ -110,15 +118,59 @@ class CompanyRoleCreateDataProvider
      */
     protected function prepareAvailablePermissions(PermissionCollectionTransfer $permissionCollectionTransfer): array
     {
+        $permissionNamesByGlossaryKey = $this->getPermissionNamesByGlossaryKey($permissionCollectionTransfer);
+
         $preparedPermissions = [];
 
         foreach ($permissionCollectionTransfer->getPermissions() as $permissionTransfer) {
-            $permissionName = $this->getPermissionVerboseName($permissionTransfer);
+            $permissionTransfer->requireKey();
+            $glossaryKey = static::GLOSSARY_KEY_PREFIX_PERMISSION_NAME . $permissionTransfer->getKey();
+
+            $permissionName = $permissionNamesByGlossaryKey[$glossaryKey]
+                ?? $this->getPermissionVerboseName($permissionTransfer);
 
             $preparedPermissions[$permissionName] = $permissionTransfer->getIdPermission();
         }
 
         return $preparedPermissions;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\PermissionCollectionTransfer $permissionCollectionTransfer
+     *
+     * @return array<string, string>
+     */
+    protected function getPermissionNamesByGlossaryKey(PermissionCollectionTransfer $permissionCollectionTransfer): array
+    {
+        $glossaryKeys = [];
+
+        foreach ($permissionCollectionTransfer->getPermissions() as $permissionTransfer) {
+            $permissionTransfer->requireKey();
+            $glossaryKeys[] = static::GLOSSARY_KEY_PREFIX_PERMISSION_NAME . $permissionTransfer->getKey();
+        }
+
+        if (!$glossaryKeys) {
+            return [];
+        }
+
+        $translationTransfers = $this->glossaryFacade->getTranslationsByGlossaryKeysAndLocaleTransfers(
+            $glossaryKeys,
+            [$this->localeFacade->getCurrentLocale()],
+        );
+
+        $permissionNamesByGlossaryKey = [];
+
+        foreach ($translationTransfers as $translationTransfer) {
+            $glossaryKeyTransfer = $translationTransfer->getGlossaryKey();
+
+            if ($glossaryKeyTransfer === null || $translationTransfer->getValue() === null) {
+                continue;
+            }
+
+            $permissionNamesByGlossaryKey[$glossaryKeyTransfer->getKeyOrFail()] = $translationTransfer->getValue();
+        }
+
+        return $permissionNamesByGlossaryKey;
     }
 
     protected function getPermissionVerboseName(PermissionTransfer $permissionTransfer): string

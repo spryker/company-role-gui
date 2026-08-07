@@ -48,6 +48,11 @@ class CompanyRoleGuiDependencyProvider extends AbstractBundleDependencyProvider
     /**
      * @var string
      */
+    public const FACADE_LOCALE = 'FACADE_LOCALE';
+
+    /**
+     * @var string
+     */
     public const PLUGINS_COMPANY_ROLE_CREATE_FORM_EXPANDER = 'PLUGINS_COMPANY_ROLE_CREATE_FORM_EXPANDER';
 
     public function provideCommunicationLayerDependencies(Container $container): Container
@@ -59,6 +64,7 @@ class CompanyRoleGuiDependencyProvider extends AbstractBundleDependencyProvider
         $container = $this->addCompanyRoleFacade($container);
         $container = $this->addGlossaryFacade($container);
         $container = $this->addPermissionFacade($container);
+        $container = $this->addLocaleFacade($container);
         $container = $this->addCompanyRoleCreateFormExpanderPlugins($container);
 
         return $container;
@@ -112,6 +118,15 @@ class CompanyRoleGuiDependencyProvider extends AbstractBundleDependencyProvider
             return new CompanyRoleGuiToPermissionFacadeBridge(
                 $container->getLocator()->permission()->facade(),
             );
+        });
+
+        return $container;
+    }
+
+    protected function addLocaleFacade(Container $container): Container
+    {
+        $container->set(static::FACADE_LOCALE, function (Container $container) {
+            return $container->getLocator()->locale()->facade();
         });
 
         return $container;
