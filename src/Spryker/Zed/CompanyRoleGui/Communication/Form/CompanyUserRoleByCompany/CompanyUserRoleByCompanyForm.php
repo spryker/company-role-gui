@@ -97,13 +97,13 @@ class CompanyUserRoleByCompanyForm extends AbstractType
     {
         $companyRoleCollectionConstraints = [];
 
-        $companyRoleCollectionConstraints[] = new Callback([
-            'callback' => function (CompanyRoleCollectionTransfer $companyRoleCollectionTransfer, ExecutionContextInterface $context) {
+        $companyRoleCollectionConstraints[] = new Callback(
+            callback: function (CompanyRoleCollectionTransfer $companyRoleCollectionTransfer, ExecutionContextInterface $context) {
                 if (!$companyRoleCollectionTransfer->getRoles()->count()) {
                     $context->addViolation('At least one role must be assigned to a user.');
                 }
             },
-        ]);
+        );
 
         return $companyRoleCollectionConstraints;
     }

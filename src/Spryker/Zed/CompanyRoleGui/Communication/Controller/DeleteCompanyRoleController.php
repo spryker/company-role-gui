@@ -70,7 +70,7 @@ class DeleteCompanyRoleController extends AbstractController
             return $this->redirectResponse(static::REDIRECT_URL_DEFAULT);
         }
 
-        $idCompanyRole = $request->query->getInt(static::PARAMETER_ID_COMPANY_ROLE);
+        $idCompanyRole = (int)$request->query->get(static::PARAMETER_ID_COMPANY_ROLE, 0);
 
         if (!$idCompanyRole) {
             throw new NotFoundHttpException(static::MESSAGE_COMPANY_ROLE_WITHOUT_ID_ERROR);
@@ -98,7 +98,7 @@ class DeleteCompanyRoleController extends AbstractController
      */
     public function confirmDeleteAction(Request $request)
     {
-        $idCompanyRole = $request->query->getInt(static::PARAMETER_ID_COMPANY_ROLE);
+        $idCompanyRole = (int)$request->query->get(static::PARAMETER_ID_COMPANY_ROLE, 0);
 
         if (!$idCompanyRole) {
             throw new NotFoundHttpException(static::MESSAGE_COMPANY_ROLE_WITHOUT_ID_ERROR);
