@@ -21,7 +21,6 @@ var roleFieldPath = 'company-user_company_role_collection';
  * @see \Spryker\Zed\CompanyRoleGui\Communication\Form\DataProvider\CompanyRoleFormDataProvider::OPTION_ATTRIBUTE_DATA
  * @type {string}
  */
-var attributeIdCompany = 'id_company';
 /**
  * @see \Spryker\Zed\CompanyRoleGui\Communication\Form\DataProvider\CompanyRoleFormDataProvider::OPTION_IS_DEFAULT
  * @type {string}
@@ -60,7 +59,6 @@ function CompanyRoleFieldHandler() {
     }
 
     function toggleOption(item) {
-        var companyId = parseInt(getCompanyId());
         var $roleOption = $(item);
 
         if ($roleOption.data(attributeIsDefault)) {
