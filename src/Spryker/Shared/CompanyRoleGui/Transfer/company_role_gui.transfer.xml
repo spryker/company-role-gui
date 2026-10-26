@@ -54,4 +54,13 @@
     <transfer name="CompanyUserCollection">
     </transfer>
 
+    <transfer name="Translation">
+        <property name="glossaryKey" type="GlossaryKey" strict="true"/>
+        <property name="value" type="string"/>
+    </transfer>
+
+    <transfer name="GlossaryKey">
+        <property name="key" type="string"/>
+    </transfer>
+
 </transfers>
